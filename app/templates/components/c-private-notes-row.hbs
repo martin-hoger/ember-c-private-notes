@@ -1,8 +1,9 @@
+{{!-- pokus pro git --}}
 <td>
   {{date-display privateNote.datetime "long"}}<br/>
   {{privateNote.userName}}
   {{#if canBeDeleted}}
-    <i class="big trash icon" {{action (action "deleteNote" privateNote)}}></i>
+    <a><i class="big trash icon" {{action (action "deleteNote" privateNote)}}></i></a>
   {{/if}}
 </td>
 <td>

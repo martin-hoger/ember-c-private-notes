@@ -10,7 +10,7 @@ export default Ember.Component.extend({
     // is it the note of this user?
     let isSameUser = this.get('privateNote.userUid') == userId;
     // saved time of note is not older then 15 minutes?
-    let isFreshRecord = moment(noteTime).format() > moment().subtract(15, 'minutes').format();
+    let isFreshRecord = moment(noteTime).format() > moment().subtract(15, 'days').format();
     // => can be deleted, will show the trash icon
     return isSameUser && isFreshRecord;
 
