@@ -1,8 +1,32 @@
-zavolá se to?
-<br/>
-{{c-form-field-input-textarea
-    model=model
-    field="message"
-    label="Soukromé poznánky"
+Osobní poznámky ke klientovi:
+{{textarea
+    value=newNote.message
+    placeholder="Nový záznam"
     rows="4"
 }}
+
+{{!-- Save note button.
+      Disabled, unless any text in message is written --}}
+{{c-form-button
+    loading=newNote.isSaving
+    disabled=(unless newNote.message true)
+    icon="save"
+    click=(action "insertNote")
+    label="Uložit"
+}}
+
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <td>Datum a čas<br/>
+          Jméno</td>
+      <td>Poznámka</td>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each privateNotes as |privateNote|}}
+      {{c-private-notes-row tagName="tr" class="admin-users-row" privateNote=privateNote}}
+    {{/each}}
+  </tbody>
+</table>
+{{log privateNotes}}

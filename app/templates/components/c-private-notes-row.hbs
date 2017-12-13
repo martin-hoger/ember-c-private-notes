@@ -1,0 +1,10 @@
+<td>
+  {{date-display privateNote.datetime "long"}}<br/>
+  {{privateNote.userName}}
+  {{#if canBeDeleted}}
+    <i class="big trash icon" {{action (action "deleteNote" privateNote)}}></i>
+  {{/if}}
+</td>
+<td>
+  {{nl-to-br privateNote.message}}
+</td>
