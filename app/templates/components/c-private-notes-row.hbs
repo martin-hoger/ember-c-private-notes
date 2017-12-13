@@ -2,6 +2,7 @@
 <td>
   {{date-display privateNote.datetime "long"}}<br/>
   {{privateNote.userName}}
+  {{!-- delete icon visible for notes not older then 15 minutes: --}}
   {{#if canBeDeleted}}
     <a><i class="big trash icon" {{action (action "deleteNote" privateNote)}}></i></a>
   {{/if}}
