@@ -20,7 +20,6 @@ export default Ember.Component.extend({
 
     // the user clicked 'delete note' button:
     deleteNote(privateNote) {
-      console.log('deleteNote');
       privateNote.deleteRecord();
       privateNote.save();
     },
