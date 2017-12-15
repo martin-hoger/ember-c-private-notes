@@ -1,0 +1,5 @@
+.private-note-cards { margin: 20px 0 0 !important; }
+.private-note-add { margin: -5px 0 0 !important; }
+.private-note-card { width: 100% !important; margin: 0 0 15px !important; }
+.private-note-card > .content > i { font-size: 17px; cursor: pointer; margin: 6px -2px 0 0; }
+.private-note-card > .content > .meta { margin: -11px 0 0 50px; }

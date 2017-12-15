@@ -1,12 +1,19 @@
-{{!-- pokus pro git --}}
-<td>
-  {{date-display privateNote.datetime "long"}}<br/>
-  {{privateNote.userName}}
+<div class="content">
   {{!-- delete icon visible for notes not older then 15 minutes: --}}
   {{#if canBeDeleted}}
-    <a><i class="big trash icon" {{action (action "deleteNote" privateNote)}}></i></a>
+    <i class="right floated trash icon" {{action (action "deleteNote" privateNote)}}></i>
   {{/if}}
-</td>
-<td>
-  {{nl-to-br privateNote.message}}
-</td>
+  <div class="header">
+    {{c-avatar-box name=privateNote.userName size=40}} &nbsp;
+    {{privateNote.userName}}
+  </div>
+  <div class="meta">
+    <span class="date">{{date-display privateNote.datetime "long"}}</span>
+  </div>
+  <div class="description">
+    {{nl-to-br privateNote.message}}
+  </div>
+</div>
+
+
+

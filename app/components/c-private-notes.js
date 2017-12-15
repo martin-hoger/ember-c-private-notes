@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
+  classNames : ['private-notes'],
   modelName : null, // we can call component with modelName,
   modelId   : null, // Id,
   model     : null, // and model or without it.

@@ -1,31 +1,26 @@
-Osobní poznámky ke klientovi:<br/>
-{{textarea
-    value=newNote.message
-    placeholder="Nový záznam"
-    rows="4"
-}}
+<form class="ui form">
+  <div class="field">
+    {{textarea
+      value=newNote.message
+      placeholder="Soukromá poznámka"
+      rows="4"
+    }}
+  </div>
+  {{!-- Save note button.
+        Disabled, unless any text in message is written --}}
+  {{c-form-button
+      loading=newNote.isSaving
+      disabled=(unless newNote.message true)
+      icon="plus"
+      click=(action "insertNote")
+      label="Přidat"
+      class="private-note-add"
+  }}
+</form>
 
-{{!-- Save note button.
-      Disabled, unless any text in message is written --}}
-{{c-form-button
-    loading=newNote.isSaving
-    disabled=(unless newNote.message true)
-    icon="save"
-    click=(action "insertNote")
-    label="Uložit"
-}}
 
-<table class="ui celled table">
-  <thead>
-    <tr>
-      <td>Datum a čas<br/>
-          Jméno</td>
-      <td>Poznámka</td>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each privateNotes as |privateNote|}}
-      {{c-private-notes-row tagName="tr" class="admin-users-row" privateNote=privateNote}}
-    {{/each}}
-  </tbody>
-</table>
+<div class="private-note-cards ui cards">
+  {{#each privateNotes as |privateNote|}}
+    {{c-private-notes-row class="private-note-card ui card" privateNote=privateNote}}
+  {{/each}}
+</div>
