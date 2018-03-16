@@ -1,12 +1,13 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject } from '@ember/service';
 
-export default Ember.Component.extend({
+export default Component.extend({
 
   classNames : ['private-notes'],
   modelName : null, // we can call component with modelName,
   modelId   : null, // Id,
   model     : null, // and model or without it.
-  store     : Ember.inject.service(),
+  store     : inject(),
 
   // We purposely do not use init(),
   // because it is called only once when element is created.
@@ -53,10 +54,9 @@ export default Ember.Component.extend({
   },
 
   actions: {
-
-    // the user filled note and clicked "save" button:
+    // the user filled note and clicked 'save' button:
     insertNote() {
-      this.get("newNote").save().then((row) => {
+      this.get('newNote').save().then(() => {
         if (this.notifications) {
           this.notifications.info('Uloženo');
         }
@@ -65,6 +65,13 @@ export default Ember.Component.extend({
         this.set('newNote', this.createEmptyNote());
       });
     },
-  }
+  },
+
+  // Remove the empty object,
+  // we do not want to have rests in the store.
+  willDestroyElement() {
+    this._super(...arguments);
+    this.get('newNote').unloadRecord();
+  },
 
 });
