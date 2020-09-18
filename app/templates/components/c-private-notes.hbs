@@ -2,7 +2,7 @@
   <div class="field">
     {{textarea
       value=newNote.message
-      placeholder="Soukromá poznámka"
+      placeholder=placeholder
       rows="4"
     }}
   </div>
@@ -13,7 +13,7 @@
       disabled=(unless newNote.message true)
       icon="plus"
       click=(action "insertNote")
-      label="Přidat"
+      label=buttonLabel
       class="private-note-add"
   }}
 </form>
@@ -21,6 +21,10 @@
 
 <div class="private-note-cards ui cards">
   {{#each privateNotes as |privateNote|}}
-    {{c-private-notes-row class="private-note-card ui card" privateNote=privateNote}}
+    {{c-private-notes-row
+        class="private-note-card ui card"
+        privateNote=privateNote
+        allowDelete=allowDelete
+    }}
   {{/each}}
 </div>

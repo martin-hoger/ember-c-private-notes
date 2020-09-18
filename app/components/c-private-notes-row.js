@@ -5,7 +5,13 @@ export default Ember.Component.extend({
 
   canBeDeleted : Ember.computed('privateNote', function () {
     let noteTime = this.get('privateNote.datetime');
-    let userId = this.get('session.user.id');
+    let userId   = this.get('session.user.id');
+
+
+    //Delete private is always allowed.
+    if (this.get('allowDelete')) {
+      return true;
+    }
 
     // is it the note of this user?
     let isSameUser = this.get('privateNote.userUid') == userId;
@@ -17,7 +23,6 @@ export default Ember.Component.extend({
   }),
 
   actions: {
-
     // the user clicked 'delete note' button:
     deleteNote(privateNote) {
       privateNote.deleteRecord();

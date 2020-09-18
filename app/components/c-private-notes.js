@@ -3,11 +3,16 @@ import { inject } from '@ember/service';
 
 export default Component.extend({
 
-  classNames : ['private-notes'],
-  modelName : null, // we can call component with modelName,
-  modelId   : null, // Id,
-  model     : null, // and model or without it.
-  store     : inject(),
+  classNames  : ['private-notes'],
+  modelName   : null, // we can call component with modelName,
+  modelId     : null, // Id,
+  model       : null, // and model or without it.
+  store       : inject(),
+
+  //Text strings to translations.
+  placeholder : 'Soukromá poznámka',
+  buttonLabel : 'Přidat',
+  saveText    : 'Uloženo',
 
   // We purposely do not use init(),
   // because it is called only once when element is created.
@@ -58,7 +63,7 @@ export default Component.extend({
     insertNote() {
       this.get('newNote').save().then(() => {
         if (this.notifications) {
-          this.notifications.info('Uloženo');
+          this.notifications.info(this.get('saveText'));
         }
         // after saving reload notes from the server and create new empty note
         this.set('privateNotes', this.loadPrivateNotes());
